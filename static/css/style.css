@@ -1,0 +1,1246 @@
+/* =========================================================
+   SAN CAYETANO - SISTEMA DE GESTIÓN MUNICIPAL
+   style.css
+   ========================================================= */
+
+/* =========================================================
+   1. VARIABLES
+   ========================================================= */
+
+:root {
+    --primary-color: #1f2933;
+    --secondary-color: #6c757d;
+    --accent-color: #0d6efd;
+    --bg-color: #f5f7f9;
+    --card-bg: #ffffff;
+
+    --sc-green: #064f22;
+    --sc-green-dark: #043f1b;
+    --sc-green-soft: #0b6b31;
+    --sc-green-light: #eef8f1;
+    --sc-blue: #1594c9;
+    --sc-yellow: #f6aa1c;
+
+    --sc-white: #ffffff;
+    --sc-border: #dfe5e8;
+    --sc-border-dark: rgba(255, 255, 255, .30);
+    --sc-text: #1f2933;
+    --sc-muted: #6b7280;
+
+    --shadow-soft: 0 4px 18px rgba(15, 23, 42, .10);
+    --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, .10);
+}
+
+/* =========================================================
+   2. BASE
+   ========================================================= */
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--sc-text);
+}
+
+a {
+    text-decoration: none;
+}
+
+/* =========================================================
+   3. HEADER PRINCIPAL
+   ========================================================= */
+
+.municipal-header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: var(--sc-white);
+    box-shadow: 0 4px 18px rgba(15, 23, 42, .12);
+}
+
+.municipal-topbar {
+    min-height: 92px;
+    background:
+        radial-gradient(circle at 18% 20%, rgba(255,255,255,.08), transparent 25%),
+        linear-gradient(90deg, #043f1b 0%, #064f22 55%, #075b28 100%);
+    display: flex;
+    align-items: center;
+}
+
+.municipal-header-container {
+    width: 100%;
+    padding-left: 34px;
+    padding-right: 34px;
+}
+
+.municipal-topbar .municipal-header-container {
+    display: flex;
+    align-items: center;
+}
+
+.municipal-brand {
+    display: flex;
+    align-items: center;
+    min-width: 292px;
+}
+
+.municipal-logo {
+    height: 60px;
+    width: auto;
+    display: block;
+}
+
+.municipal-divider {
+    width: 1px;
+    height: 58px;
+    background: var(--sc-border-dark);
+    margin: 0 30px;
+    flex-shrink: 0;
+}
+
+.municipal-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.municipal-title-main {
+    color: var(--sc-white);
+    font-size: 1.38rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.municipal-title-sub {
+    color: rgba(255, 255, 255, .82);
+    font-size: .93rem;
+    font-weight: 500;
+    margin-top: 8px;
+    white-space: nowrap;
+}
+
+.municipal-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    color: var(--sc-white);
+}
+
+.header-action-group {
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    border-left: 1px solid rgba(255, 255, 255, .32);
+}
+
+.notification-btn {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    background: transparent;
+    color: var(--sc-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+    padding: 0;
+    transition: transform .2s ease, opacity .2s ease;
+}
+
+.notification-btn:hover {
+    color: var(--sc-white);
+    opacity: .9;
+    transform: translateY(-1px);
+}
+
+.notification-badge {
+    position: absolute;
+    top: 1px;
+    right: 0;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: var(--sc-yellow);
+    color: var(--sc-white);
+    font-size: .72rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-dropdown-btn {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: var(--sc-white);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.user-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .18);
+    border: 1px solid rgba(255, 255, 255, .28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sc-white);
+    font-size: 1rem;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.user-info {
+    min-width: 145px;
+    text-align: left;
+}
+
+.user-name {
+    display: block;
+    font-size: .96rem;
+    font-weight: 800;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.user-role {
+    display: block;
+    font-size: .82rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, .78);
+    margin-top: 4px;
+    white-space: nowrap;
+}
+
+.user-dropdown-icon {
+    margin-left: 6px;
+    font-size: .75rem;
+    color: rgba(255, 255, 255, .85);
+}
+
+.logout-btn {
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, .92);
+    font-size: .9rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0;
+}
+
+.logout-btn i {
+    font-size: 1.35rem;
+}
+
+.logout-btn:hover {
+    color: var(--sc-white);
+}
+
+.mobile-menu-btn {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .12);
+    color: var(--sc-white);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    padding: 0;
+}
+
+.mobile-menu-btn:hover {
+    background: rgba(255, 255, 255, .20);
+    color: var(--sc-white);
+}
+
+/* =========================================================
+   4. NAVEGACIÓN PRINCIPAL
+   ========================================================= */
+
+.municipal-nav {
+    min-height: 66px;
+    background: var(--sc-white);
+    border-bottom: 1px solid var(--sc-border);
+    padding: 0;
+}
+
+.municipal-nav .municipal-header-container {
+    display: flex;
+    align-items: stretch;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.municipal-menu {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: stretch;
+}
+
+.municipal-menu .nav-item {
+    position: relative;
+}
+
+.municipal-menu .nav-link {
+    min-height: 66px;
+    height: 100%;
+    color: var(--sc-text) !important;
+    font-size: .94rem;
+    font-weight: 800;
+    padding: 0 22px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    border-right: 1px solid var(--sc-border);
+    position: relative;
+    white-space: nowrap;
+}
+
+.municipal-menu .nav-link i {
+    font-size: 1.35rem;
+    color: var(--sc-green);
+    font-weight: normal;
+}
+
+.municipal-menu .nav-link:hover {
+    color: var(--sc-green) !important;
+    background: #f6faf7;
+}
+
+.municipal-menu .nav-link.active {
+    color: var(--sc-green) !important;
+    background: #f8fbf9;
+}
+
+.municipal-menu .nav-link.active::after,
+.municipal-menu .nav-link:hover::after {
+    content: "";
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: 0;
+    height: 4px;
+    background: var(--sc-green);
+    border-radius: 4px 4px 0 0;
+}
+
+.municipal-menu .nav-link-disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.municipal-menu .nav-link-disabled:hover {
+    color: var(--sc-text) !important;
+    background: transparent;
+}
+
+.municipal-menu .nav-link-disabled:hover::after {
+    display: none;
+}
+
+/* =========================================================
+   5. MENÚ MOBILE - USUARIO
+   ========================================================= */
+
+.mobile-user-info {
+    display: none;
+}
+
+.mobile-user-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mobile-user-name {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--sc-text);
+}
+
+.mobile-user-role {
+    font-size: .85rem;
+    font-weight: 500;
+    color: var(--sc-muted);
+}
+
+.mobile-logout-btn {
+    margin-top: 8px;
+    border: none;
+    background: var(--sc-green);
+    color: white;
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-weight: 700;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.mobile-logout-btn:hover {
+    background: var(--sc-green-dark);
+}
+
+/* =========================================================
+   6. CARDS GENERALES
+   ========================================================= */
+
+.card {
+    border-radius: .75rem;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+}
+
+/* =========================================================
+   7. BOTONES
+   ========================================================= */
+
+.btn-primary {
+    background-color: var(--sc-green);
+    border-color: var(--sc-green);
+    font-weight: 700;
+}
+
+.btn-primary:hover {
+    background-color: var(--sc-green-dark);
+    border-color: var(--sc-green-dark);
+}
+
+.btn-outline-primary {
+    color: var(--sc-green);
+    border-color: var(--sc-green);
+    font-weight: 700;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--sc-green);
+    border-color: var(--sc-green);
+    color: var(--sc-white);
+}
+
+/* =========================================================
+   8. KANBAN
+   ========================================================= */
+
+.kanban-board {
+    min-height: 70vh;
+}
+
+.kanban-col {
+    background-color: #ebecf0 !important;
+    border-radius: .75rem;
+}
+
+.kanban-col .card-header {
+    border-top-left-radius: .75rem;
+    border-top-right-radius: .75rem;
+    font-size: 1.1rem;
+    padding: .75rem 1rem;
+}
+
+.kanban-tasks {
+    min-height: 50vh;
+}
+
+.kanban-card {
+    margin-bottom: .75rem;
+    border-radius: .6rem;
+    border-left: 4px solid transparent;
+}
+
+.kanban-card:hover {
+    border-left-color: var(--sc-green);
+}
+
+.kanban-ghost {
+    opacity: .4;
+    background-color: #e2e4e6;
+}
+
+.hover-primary:hover {
+    color: var(--sc-green) !important;
+}
+
+/* =========================================================
+   9. UTILIDADES
+   ========================================================= */
+
+.text-sc-green {
+    color: var(--sc-green) !important;
+}
+
+.bg-sc-green {
+    background-color: var(--sc-green) !important;
+}
+
+.border-sc-green {
+    border-color: var(--sc-green) !important;
+}
+
+.text-purple {
+    color: #7e57c2;
+}
+
+/* =========================================================
+   10. LOGIN MUNICIPAL
+   ========================================================= */
+
+body:not(.authenticated) {
+    background: #ffffff !important;
+}
+
+body:not(.authenticated) main.container {
+    max-width: 100%;
+    padding: 0;
+    margin: 0 !important;
+}
+
+body:not(.authenticated) .municipal-header {
+    display: none;
+}
+
+.login-page-wrapper {
+    min-height: calc(100vh - 240px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px 20px;
+    position: relative;
+    z-index: 5;
+}
+
+.login-card-municipal {
+    width: 100%;
+    max-width: 520px;
+    background: white;
+    border-radius: 22px;
+    padding: 45px;
+    box-shadow: 0 15px 40px rgba(15,23,42,.08);
+    position: relative;
+    z-index: 10;
+}
+
+.login-card-municipal .text-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-logo {
+    height: 55px;
+    width: auto;
+    display: block;
+    margin: 0 auto 24px;
+}
+
+.login-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--sc-green);
+    line-height: 1.15;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.login-subtitle {
+    color: var(--sc-muted);
+    font-size: .95rem;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.login-btn {
+    height: 54px;
+    border-radius: 12px;
+    font-weight: 700;
+}
+
+.login-landscape {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 320px;
+    background-image: url("../img/background-login.png");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% auto;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* =========================================================
+   11. DASHBOARD - CENTRO DE OPERACIONES
+   ========================================================= */
+
+.operation-dashboard {
+    width: 100%;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+.dashboard-hero {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 26px;
+}
+
+.dashboard-welcome {
+    margin: 0 0 8px;
+    color: var(--sc-green);
+    font-size: .88rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.dashboard-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--sc-text);
+    margin: 0 0 12px;
+}
+
+.dashboard-update {
+    color: var(--sc-muted);
+    font-size: .9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dashboard-date-card {
+    background: white;
+    border: 1px solid var(--sc-border);
+    border-radius: 14px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: var(--shadow-soft);
+}
+
+.date-item,
+.weather-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    color: var(--sc-text);
+}
+
+.date-item {
+    padding-right: 0;
+    border-right: 0;
+}
+
+.date-item i {
+    color: var(--sc-green);
+    font-size: 1.25rem;
+}
+
+.weather-item i {
+    color: var(--sc-yellow);
+    font-size: 1.7rem;
+}
+
+.weather-item span {
+    display: block;
+    font-size: .82rem;
+    color: var(--sc-muted);
+    font-weight: 500;
+}
+
+.dashboard-filters {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.dashboard-filters .form-control {
+    max-width: 180px;
+    min-height: 44px;
+    border-radius: 10px;
+}
+
+/* KPIs */
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.kpi-card {
+    background: white;
+    border: 1px solid var(--sc-border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+}
+
+.kpi-card-clean {
+    min-height: 132px;
+    padding: 16px 14px;
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    grid-template-rows: 40px 44px 24px;
+    column-gap: 12px;
+    row-gap: 2px;
+    align-items: center;
+    overflow: hidden;
+}
+
+.kpi-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+}
+
+.kpi-card-clean .kpi-icon {
+    grid-column: 1;
+    grid-row: 1 / 4;
+}
+
+.kpi-label {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 40px;
+    display: flex;
+    align-items: flex-end;
+    color: var(--sc-text);
+    font-size: .78rem;
+    font-weight: 800;
+    line-height: 1.08;
+    margin: 0;
+}
+
+.kpi-number {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    align-items: center;
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--sc-text);
+    margin: 0;
+}
+
+.kpi-caption {
+    grid-column: 2;
+    grid-row: 3;
+    min-height: 24px;
+    display: flex;
+    align-items: flex-start;
+    font-size: .72rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.kpi-blue { background: #0d6efd; }
+.kpi-yellow { background: #f6aa1c; }
+.kpi-cyan { background: #19b9d2; }
+.kpi-green { background: #1f9d55; }
+.kpi-red { background: #dc3545; }
+.kpi-purple { background: #7e57c2; }
+.kpi-teal { background: #00796b; }
+
+/* Métricas operativas */
+
+.operational-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.metric-card {
+    background: white;
+    border: 1px solid var(--sc-border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow-soft);
+    min-width: 0;
+}
+
+.metric-card i {
+    color: var(--sc-green);
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.metric-card strong {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--sc-text);
+    line-height: 1;
+}
+
+.metric-card span {
+    display: block;
+    font-size: .78rem;
+    color: var(--sc-muted);
+    font-weight: 600;
+}
+
+/* Panel inferior */
+
+.dashboard-panel {
+    background: white;
+    border: 1px solid var(--sc-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    padding: 26px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 30px;
+    overflow: hidden;
+}
+
+.chart-section {
+    min-width: 0;
+    padding-right: 26px;
+    border-right: 1px solid var(--sc-border);
+}
+
+.chart-section h3,
+.activity-section h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--sc-text);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chart-section h3 i,
+.activity-section h3 i {
+    color: var(--sc-muted);
+}
+
+.chart-subtitle {
+    font-size: .84rem;
+    color: var(--sc-muted);
+    margin-top: -12px;
+    margin-bottom: 22px;
+}
+
+.chart-section canvas {
+    height: 330px !important;
+}
+
+.activity-section {
+    min-width: 0;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.activity-header h3 {
+    margin-bottom: 0;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.activity-item {
+    display: grid;
+    grid-template-columns: 12px minmax(0, 1fr) auto;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.activity-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top: 6px;
+}
+
+.activity-item p {
+    margin: 0;
+    font-size: .88rem;
+    line-height: 1.35;
+    color: var(--sc-text);
+}
+
+.activity-item small {
+    color: var(--sc-muted);
+    font-size: .75rem;
+}
+
+.activity-badge {
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: .75rem;
+    font-weight: 700;
+    white-space: nowrap;
+    max-width: 150px;
+    text-align: center;
+}
+
+.bg-soft-green {
+    background: #dff4e7;
+    color: #0f6b35;
+}
+
+.bg-soft-blue {
+    background: #dff3ff;
+    color: #0077b6;
+}
+
+.bg-soft-yellow {
+    background: #fff2d8;
+    color: #9a6700;
+}
+
+.bg-soft-red {
+    background: #fde1e4;
+    color: #c91f32;
+}
+
+/* =========================================================
+   12. RESPONSIVE GENERAL
+   ========================================================= */
+
+@media (max-width: 1399px) {
+    .kpi-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1199px) {
+    .municipal-brand {
+        min-width: 250px;
+    }
+
+    .municipal-menu .nav-link {
+        padding: 0 18px !important;
+        font-size: .88rem;
+    }
+
+    .kpi-card-clean {
+        min-height: 126px;
+    }
+}
+
+@media (max-width: 991px) {
+    .municipal-topbar {
+        min-height: 78px;
+    }
+
+    .municipal-header-container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .municipal-brand {
+        min-width: auto;
+    }
+
+    .municipal-logo {
+        height: 46px;
+    }
+
+    .municipal-divider,
+    .municipal-title,
+    .notification-btn,
+    .header-action-group.d-none,
+    .header-action-group.d-lg-flex,
+    .user-info,
+    .logout-btn {
+        display: none !important;
+    }
+
+    .municipal-actions {
+        gap: 12px;
+    }
+
+    .header-action-group {
+        border-left: 0;
+        padding: 0;
+    }
+
+    .user-avatar {
+        width: 42px;
+        height: 42px;
+        font-size: .9rem;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .municipal-nav {
+        min-height: auto;
+    }
+
+    #municipalMenu {
+        background: var(--sc-white);
+        border-top: 1px solid var(--sc-border);
+        box-shadow: 0 10px 24px rgba(15, 23, 42, .12);
+    }
+
+    .municipal-menu {
+        display: block;
+        width: 100%;
+    }
+
+    .municipal-menu .nav-link {
+        min-height: 54px;
+        border-right: 0;
+        border-bottom: 1px solid var(--sc-border);
+        padding: 0 20px !important;
+        font-size: .95rem;
+        justify-content: flex-start;
+    }
+
+    .municipal-menu .nav-link.active::after,
+    .municipal-menu .nav-link:hover::after {
+        display: none;
+    }
+
+    .municipal-menu .nav-link.active {
+        background: var(--sc-green-light);
+        color: var(--sc-green) !important;
+    }
+
+    .mobile-user-info {
+        display: block;
+        padding: 20px;
+        background: #f8faf9;
+        border-top: 1px solid var(--sc-border);
+    }
+
+    .dashboard-hero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dashboard-date-card {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .dashboard-filters {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .dashboard-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-section {
+        padding-right: 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--sc-border);
+        padding-bottom: 24px;
+    }
+
+    .operational-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .operation-dashboard {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .dashboard-hero {
+        gap: 18px;
+    }
+
+    .dashboard-title {
+        font-size: 1.75rem;
+        line-height: 1.15;
+    }
+
+    .dashboard-date-card {
+        padding: 16px;
+    }
+
+    .dashboard-filters {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .dashboard-filters .form-control,
+    .dashboard-filters .btn,
+    .dashboard-filters a {
+        max-width: none;
+        width: 100%;
+    }
+
+    .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .kpi-card-clean {
+        min-height: 130px;
+        padding: 16px 14px;
+        grid-template-columns: 48px minmax(0, 1fr);
+        grid-template-rows: 40px 42px 22px;
+        column-gap: 12px;
+    }
+
+    .kpi-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+    }
+
+    .kpi-label {
+        font-size: .76rem;
+        line-height: 1.08;
+    }
+
+    .kpi-number {
+        font-size: 2rem;
+    }
+
+    .kpi-caption {
+        font-size: .72rem;
+    }
+
+    .dashboard-panel {
+        padding: 20px;
+    }
+
+    .activity-header {
+        align-items: flex-start;
+    }
+
+    .activity-item {
+        grid-template-columns: 12px minmax(0, 1fr);
+    }
+
+    .activity-badge {
+        grid-column: 2;
+        width: fit-content;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    .municipal-header-container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .municipal-logo {
+        height: 42px;
+    }
+
+    .user-avatar {
+        width: 38px;
+        height: 38px;
+    }
+
+    .dashboard-title {
+        font-size: 1.55rem;
+    }
+
+    .dashboard-date-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .operational-metrics {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .login-page-wrapper {
+        min-height: calc(100vh - 260px);
+        padding: 32px 18px 18px;
+        align-items: flex-start;
+    }
+
+    .login-card-municipal {
+        padding: 28px 22px;
+        border-radius: 18px;
+    }
+
+    .login-logo {
+        height: 52px;
+        margin-bottom: 20px;
+    }
+
+    .login-title {
+        font-size: 2rem;
+    }
+
+    .login-landscape {
+        height: 210px;
+        background-size: auto 210px;
+    }
+}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Acceso - Centro de Operaciones Municipal{% endblock %}
+
+{% block content %}
+
+<div class="login-page-wrapper">
+
+    <div class="login-card-municipal">
+
+        <div class="text-center">
+
+            <img src="{% static 'img/logo-san-cayetano-black.svg' %}"
+                 alt="San Cayetano Municipio"
+                 class="login-logo">
+
+            <h1 class="login-title">
+                Centro de Operaciones
+            </h1>
+
+            <p class="login-subtitle">
+                Sistema Integral de Gestión Territorial
+            </p>
+
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form|crispy }}
+
+            <div class="d-grid mt-4">
+                <button type="submit"
+                        class="btn btn-primary btn-lg login-btn">
+                    Ingresar al Sistema
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="login-landscape"></div>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ title }} - San Cayetano{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <form method="post" id="task-form">
+            {% csrf_token %}
+            <div class="row">
+                <!-- Columna Izquierda: Tarea -->
+                <div class="col-md-7">
+                    <div class="card shadow-sm border-0 mt-4 mb-4">
+                        <div class="card-header bg-white border-bottom pt-4 pb-2">
+                            <h3 class="fw-bold"><i class="fa-solid fa-list-check"></i> {{ title }}</h3>
+                        </div>
+                        <div class="card-body p-4">
+                            {% crispy form %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Recursos -->
+                <div class="col-md-5">
+                    <div class="card shadow-sm border-0 mt-4 mb-4">
+                        <div class="card-header bg-secondary text-white border-bottom pt-4 pb-2">
+                            <h4 class="fw-bold"><i class="fa-solid fa-cubes"></i> Recursos Utilizados</h4>
+                        </div>
+                        <div class="card-body p-4 bg-light">
+                            {{ formset.management_form }}
+                            
+                            <div id="formset-container">
+                                {% for resource_form in formset %}
+                                <div class="resource-form-row card mb-3 border-0 shadow-sm">
+                                    <div class="card-body p-3">
+                                        <div class="row g-2 align-items-center">
+                                            <div class="col-sm-7">
+                                                {{ resource_form.article|as_crispy_field }}
+                                            </div>
+                                            <div class="col-sm-3">
+                                                {{ resource_form.quantity|as_crispy_field }}
+                                            </div>
+                                            <div class="col-sm-2 text-center pt-3">
+                                                {% if formset.can_delete %}
+                                                    {{ resource_form.DELETE|as_crispy_field }}
+                                                {% endif %}
+                                            </div>
+                                            {% for hidden in resource_form.hidden_fields %}
+                                                {{ hidden }}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            
+                            <button type="button" id="add-resource-btn" class="btn btn-outline-secondary w-100 mt-2">
+                                <i class="fa-solid fa-plus"></i> Añadir Recurso
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg"><i class="fa-solid fa-floppy-disk"></i> Guardar Tarea</button>
+                        <a href="{% url 'kanban' %}" class="btn btn-link text-secondary text-decoration-none">Cancelar y Volver</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Template oculto para añadir nuevas filas del formset con JS -->
+<div id="empty-form-template" style="display: none;">
+    <div class="resource-form-row card mb-3 border-0 shadow-sm">
+        <div class="card-body p-3">
+            <div class="row g-2 align-items-center">
+                <div class="col-sm-7">
+                    {{ formset.empty_form.article|as_crispy_field }}
+                </div>
+                <div class="col-sm-3">
+                    {{ formset.empty_form.quantity|as_crispy_field }}
+                </div>
+                <div class="col-sm-2 text-center pt-3">
+                    {% if formset.can_delete %}
+                        {{ formset.empty_form.DELETE|as_crispy_field }}
+                    {% endif %}
+                </div>
+                {% for hidden in formset.empty_form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const addBtn = document.getElementById('add-resource-btn');
+    const container = document.getElementById('formset-container');
+    const totalForms = document.getElementById('id_resources-TOTAL_FORMS');
+    
+    addBtn.addEventListener('click', function() {
+        const formCount = parseInt(totalForms.value);
+        const template = document.getElementById('empty-form-template').innerHTML;
+        
+        // Replace '__prefix__' with the current form count index
+        const newFormHtml = template.replace(/__prefix__/g, formCount);
+        
+        // Append new form
+        container.insertAdjacentHTML('beforeend', newFormHtml);
+        
+        // Update total forms count
+        totalForms.value = formCount + 1;
+    });
+});
+</script>
+{% endblock %}

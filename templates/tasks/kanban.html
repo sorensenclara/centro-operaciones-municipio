@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block title %}Kanban - San Cayetano{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold"><i class="fa-solid fa-table-columns"></i> Tablero Kanban</h2>
+    {% if not user.is_operador %}
+    <a href="{% url 'task_create' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Nueva Tarea</a>
+    {% endif %}
+</div>
+
+<div class="row kanban-board">
+    <!-- Registradas -->
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 bg-light kanban-col h-100">
+            <div class="card-header bg-secondary text-white fw-bold border-0">
+                Registradas <span class="badge bg-light text-dark float-end">{{ tasks_registered.count }}</span>
+            </div>
+            <div class="card-body kanban-tasks p-2" id="REG" data-status="REG">
+                {% for task in tasks_registered %}
+                {% include 'tasks/kanban_card.html' with task=task %}
+                {% empty %}
+                <div class="text-muted small text-center p-2 empty-msg">Sin tareas</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Pendientes -->
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 bg-light kanban-col h-100">
+            <div class="card-header bg-warning text-dark fw-bold border-0">
+                Pendientes <span class="badge bg-light text-dark float-end">{{ tasks_pending.count }}</span>
+            </div>
+            <div class="card-body kanban-tasks p-2" id="PEN" data-status="PEN">
+                {% for task in tasks_pending %}
+                {% include 'tasks/kanban_card.html' with task=task %}
+                {% empty %}
+                <div class="text-muted small text-center p-2 empty-msg">Sin tareas</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- En Curso -->
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 bg-light kanban-col h-100">
+            <div class="card-header bg-info text-white fw-bold border-0">
+                En Curso <span class="badge bg-light text-dark float-end">{{ tasks_in_progress.count }}</span>
+            </div>
+            <div class="card-body kanban-tasks p-2" id="INP" data-status="INP">
+                {% for task in tasks_in_progress %}
+                {% include 'tasks/kanban_card.html' with task=task %}
+                {% empty %}
+                <div class="text-muted small text-center p-2 empty-msg">Sin tareas</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Finalizadas -->
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 bg-light kanban-col h-100">
+            <div class="card-header bg-success text-white fw-bold border-0">
+                Finalizadas <span class="badge bg-light text-dark float-end">{{ tasks_completed.count }}</span>
+            </div>
+            <div class="card-body kanban-tasks p-2" id="COM" data-status="COM">
+                {% for task in tasks_completed %}
+                {% include 'tasks/kanban_card.html' with task=task %}
+                {% empty %}
+                <div class="text-muted small text-center p-2 empty-msg">Sin tareas</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const columns = document.querySelectorAll('.kanban-tasks');
+        
+        columns.forEach(col => {
+            new Sortable(col, {
+                group: 'kanban', // set both lists to same group
+                animation: 150,
+                ghostClass: 'kanban-ghost',
+                onEnd: function (evt) {
+                    const itemEl = evt.item;  // dragged HTMLElement
+                    const toEl = evt.to;    // target list
+                    
+                    const taskId = itemEl.dataset.id;
+                    const newStatus = toEl.dataset.status;
+                    const oldStatus = evt.from.dataset.status;
+
+                    if(newStatus !== oldStatus) {
+                        // Send AJAX request
+                        fetch("{% url 'update_task_status' %}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': '{{ csrf_token }}'
+                            },
+                            body: JSON.stringify({
+                                task_id: taskId,
+                                status: newStatus
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (!data.success) {
+                                alert("Error: " + data.error);
+                                // Revert move
+                                evt.from.insertBefore(itemEl, evt.from.children[evt.oldIndex]);
+                            } else {
+                                // hide empty message in target
+                                const emptyMsg = toEl.querySelector('.empty-msg');
+                                if(emptyMsg) emptyMsg.style.display = 'none';
+                                
+                                // refresh badges count could be done here as enhancement
+                            }
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            alert("Error de conexión");
+                            evt.from.insertBefore(itemEl, evt.from.children[evt.oldIndex]);
+                        });
+                    }
+                },
+            });
+        });
+    });
+</script>
+{% endblock %}
