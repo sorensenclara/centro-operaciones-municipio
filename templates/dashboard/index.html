@@ -43,13 +43,18 @@
         </a>
     </form>
 
+                <h3>
+                <i class="bi bi-bar-chart"></i>
+                Tareas operativas
+            </h3>
+
     <div class="kpi-grid kpi-grid-clean">
 
         <a href="{% url 'task_list' %}" class="kpi-card kpi-card-clean">
             <div class="kpi-icon kpi-blue">
                 <i class="bi bi-clipboard-check"></i>
             </div>
-            <span class="kpi-label">Tareas<br>Totales</span>
+            <span class="kpi-label">Totales</span>
             <strong class="kpi-number">{{ stats.total }}</strong>
             <small class="kpi-caption text-primary">Registradas</small>
         </a>
@@ -58,7 +63,7 @@
             <div class="kpi-icon kpi-yellow">
                 <i class="bi bi-clock"></i>
             </div>
-            <span class="kpi-label">Tareas<br>Pendientes</span>
+            <span class="kpi-label">Pendientes</span>
             <strong class="kpi-number">{{ stats.PEN }}</strong>
             <small class="kpi-caption text-warning">Por iniciar</small>
         </a>
@@ -67,7 +72,7 @@
             <div class="kpi-icon kpi-cyan">
                 <i class="bi bi-play"></i>
             </div>
-            <span class="kpi-label">Tareas en<br>Ejecución</span>
+            <span class="kpi-label">Ejecución</span>
             <strong class="kpi-number">{{ stats.INP }}</strong>
             <small class="kpi-caption text-info">En curso</small>
         </a>
@@ -76,7 +81,7 @@
             <div class="kpi-icon kpi-green">
                 <i class="bi bi-check-circle"></i>
             </div>
-            <span class="kpi-label">Tareas<br>Finalizadas</span>
+            <span class="kpi-label">Finalizadas</span>
             <strong class="kpi-number">{{ stats.COM }}</strong>
             <small class="kpi-caption text-success">Resueltas</small>
         </a>
@@ -85,7 +90,7 @@
             <div class="kpi-icon kpi-red">
                 <i class="bi bi-exclamation-triangle"></i>
             </div>
-            <span class="kpi-label">Tareas<br>Vencidas</span>
+            <span class="kpi-label">Vencidas</span>
             <strong class="kpi-number">{{ stats.overdue }}</strong>
             <small class="kpi-caption text-danger">Atención</small>
         </a>
@@ -94,7 +99,7 @@
             <div class="kpi-icon kpi-purple">
                 <i class="bi bi-hourglass-split"></i>
             </div>
-            <span class="kpi-label">Horas<br>Planificadas</span>
+            <span class="kpi-label">Hs Plan</span>
             <strong class="kpi-number">{{ stats.planned_hours|default:"0" }}</strong>
             <small class="kpi-caption text-purple">Estimadas</small>
         </a>
@@ -103,46 +108,10 @@
             <div class="kpi-icon kpi-teal">
                 <i class="bi bi-stopwatch"></i>
             </div>
-            <span class="kpi-label">Horas<br>Ejecutadas</span>
+            <span class="kpi-label">Hs Acción</span>
             <strong class="kpi-number">{{ stats.executed_hours|default:"0" }}</strong>
             <small class="kpi-caption text-success">Registradas</small>
         </a>
-
-    </div>
-
-    <div class="operational-metrics">
-
-        <div class="metric-card">
-            <i class="bi bi-list-task"></i>
-            <div>
-                <strong>{{ stats.total }}</strong>
-                <span>Tareas gestionadas</span>
-            </div>
-        </div>
-
-        <div class="metric-card">
-            <i class="bi bi-check2-circle"></i>
-            <div>
-                <strong>{{ stats.COM }}</strong>
-                <span>Tareas resueltas</span>
-            </div>
-        </div>
-
-        <div class="metric-card">
-            <i class="bi bi-play-circle"></i>
-            <div>
-                <strong>{{ stats.INP }}</strong>
-                <span>Trabajos en ejecución</span>
-            </div>
-        </div>
-
-        <div class="metric-card">
-            <i class="bi bi-exclamation-octagon"></i>
-            <div>
-                <strong>{{ stats.overdue }}</strong>
-                <span>Situaciones críticas</span>
-            </div>
-        </div>
 
     </div>
 
