@@ -6,7 +6,7 @@
 
 <section class="operation-dashboard">
 
-    <div class="dashboard-hero">
+    <div class="dashboard-hero dashboard-hero-compact">
         <div>
             <p class="dashboard-welcome">
                 Bienvenido, {{ user.get_full_name|default:user.username }}
@@ -21,32 +21,34 @@
                 Última actualización: 03/06/2026 11:20
             </div>
         </div>
-
-        <div class="dashboard-date-card">
-            <div class="date-item">
-                <i class="bi bi-calendar-event"></i>
-                Miércoles, 3 de Junio de 2026
-            </div>
-        </div>
     </div>
 
-    <form class="dashboard-filters" method="get">
-        <input type="date" name="start_date" class="form-control" value="{{ start_date|default:'' }}">
-        <input type="date" name="end_date" class="form-control" value="{{ end_date|default:'' }}">
+    <div class="dashboard-tools-card">
 
-        <button type="submit" class="btn btn-primary">
-            <i class="fa-solid fa-filter"></i> Filtrar
-        </button>
+        <div class="dashboard-current-date">
+            <i class="bi bi-calendar-event"></i>
+            <span>Miércoles, 3 de Junio de 2026</span>
+        </div>
 
-        <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">
-            <i class="fa-solid fa-rotate-left"></i> Limpiar
-        </a>
-    </form>
+        <form class="dashboard-filters dashboard-filters-compact" method="get">
+            <input type="date" name="start_date" class="form-control" value="{{ start_date|default:'' }}">
+            <input type="date" name="end_date" class="form-control" value="{{ end_date|default:'' }}">
 
-                <h3>
-                <i class="bi bi-bar-chart"></i>
-                Tareas operativas
-            </h3>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-filter"></i> Filtrar
+            </button>
+
+            <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">
+                <i class="fa-solid fa-rotate-left"></i> Limpiar
+            </a>
+        </form>
+
+    </div>
+
+    <div class="dashboard-section-title">
+        <i class="bi bi-speedometer2"></i>
+        <h2>Tareas operativas</h2>
+    </div>
 
     <div class="kpi-grid kpi-grid-clean">
 
@@ -99,7 +101,7 @@
             <div class="kpi-icon kpi-purple">
                 <i class="bi bi-hourglass-split"></i>
             </div>
-            <span class="kpi-label">Hs Plan</span>
+            <span class="kpi-label">Hs plan.</span>
             <strong class="kpi-number">{{ stats.planned_hours|default:"0" }}</strong>
             <small class="kpi-caption text-purple">Estimadas</small>
         </a>
@@ -108,7 +110,7 @@
             <div class="kpi-icon kpi-teal">
                 <i class="bi bi-stopwatch"></i>
             </div>
-            <span class="kpi-label">Hs Acción</span>
+            <span class="kpi-label">Hs acción</span>
             <strong class="kpi-number">{{ stats.executed_hours|default:"0" }}</strong>
             <small class="kpi-caption text-success">Registradas</small>
         </a>
