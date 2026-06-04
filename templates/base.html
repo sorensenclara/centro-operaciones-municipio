@@ -20,6 +20,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
     {% block extra_css %}{% endblock %}
 </head>
 
@@ -99,7 +100,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'mapa' %}active{% endif %}" href="#">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'mapa_operativo' %}active{% endif %}" href="{% url 'mapa_operativo' %}">
                             <i class="bi bi-geo-alt"></i>
                             Mapa Operativo
                         </a>

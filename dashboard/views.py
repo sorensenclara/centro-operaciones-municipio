@@ -4,6 +4,8 @@ from tasks.models import Task
 from django.utils import timezone
 import datetime
 from django.db.models import Count
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 
 @login_required
 def dashboard_home(request):
@@ -52,3 +54,8 @@ def dashboard_home(request):
         'end_date': end_date_str,
     }
     return render(request, 'dashboard/index.html', context)
+
+
+@login_required
+def mapa_operativo(request):
+    return render(request, "dashboard/mapa_operativo.html")
